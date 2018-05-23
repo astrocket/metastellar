@@ -1,0 +1,30 @@
+{
+  "name": "metastellar",
+  "version": "1.0.0",
+  "description": "Metastell DApp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/astrocket/metastellar.git"
+  },
+  "keywords": [
+    "Ethereum",
+    "DApp"
+  ],
+  "author": "Astro Lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/astrocket/metastellar/issues"
+  },
+  "homepage": "https://github.com/astrocket/metastellar#readme",
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "ganache-cli": "^6.1.0",
+    "mocha": "^5.2.0",
+    "solc": "^0.4.24",
+    "web3": "^1.0.0-beta.34"
+  }
+}
