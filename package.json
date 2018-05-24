@@ -1,10 +1,13 @@
 {
   "name": "metastellar",
   "version": "1.0.0",
-  "description": "Metastell DApp",
+  "description": "Metastellar DApp",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha",
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -12,6 +15,7 @@
   },
   "keywords": [
     "Ethereum",
+    "EOS",
     "DApp"
   ],
   "author": "Astro Lee",
@@ -19,12 +23,16 @@
   "bugs": {
     "url": "https://github.com/astrocket/metastellar/issues"
   },
-  "homepage": "https://github.com/astrocket/metastellar#readme",
+  "homepage": "https://github.com/astrocket/metastellar",
   "dependencies": {
     "fs-extra": "^6.0.1",
     "ganache-cli": "^6.1.0",
     "mocha": "^5.2.0",
+    "next": "^6.0.3",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
     "solc": "^0.4.24",
+    "truffle-hdwallet-provider": "0.0.5",
     "web3": "^1.0.0-beta.34"
   }
 }

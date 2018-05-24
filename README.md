@@ -1,4 +1,4 @@
-## Metastellar proposal.
+## Metastellar project.
 
 Constellation market on Ethereum & EOS Blockchain.
 
@@ -24,7 +24,7 @@ There are number of features that could be an appealing point.
 2. Semantic UI for UI framework.
 3. Next.js for routing & server-side rendering.
 4. MobX for state management.
-5. VirtualSky for constellation draw.
+5. [VirtualSky](https://github.com/slowe/VirtualSky) for constellation draw.
 6. Solidity for Ethereum smart contract.
 7. Mocha for testing.
 
@@ -39,6 +39,7 @@ There are number of features that could be an appealing point.
 3. Option for adding or subtracting unique characteristic of each stars.
 
 ```javascript
+// Mockup code.
 pragma solidity ^0.4.19;
 
 contract MetaStellar {
@@ -124,7 +125,7 @@ contract MetaStellar {
     
     function buyAstro(int id, string voyagerName, string url) public {
         require(msg.value > minimumPriceBid)
-        Astro storage targetAstro = constellation[id];
+        Astro storageee targetAstro = constellation[id];
         Voyager memory lastVoyager = targetAstro.voyager; // last Owner
         Voyager memory newVoyager = Voyager({
             owner: msg.sender,
@@ -153,9 +154,16 @@ contract MetaStellar {
 }
 ```
 
+[Reference](http://slowe.github.io/VirtualSky/messier.json)
 
 
 
+별자리 그리는 법
+
+1. 밑그림을 배경으로 깔아주고 좌표만 고르도록 하는 방법.
+2. js, css 로 구현하는 방법
+3. 실제 우주 좌표를 활용해서 그리는 방법.
+4. 
 
 
 
