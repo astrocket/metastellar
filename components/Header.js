@@ -3,13 +3,13 @@ import {Menu} from 'semantic-ui-react';
 
 export default () => {
   return (
-      <Menu style={{marginTop: '10px'}}>
+      <Menu style={{margin: '10px'}} class={'meta-header ui menu'}>
         <Menu.Item>
-          CrowdCoin
+          MetaStellar
         </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
-            Campaigns
+            Constellation
           </Menu.Item>
           <Menu.Item>
             +

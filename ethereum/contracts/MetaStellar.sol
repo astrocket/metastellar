@@ -1,12 +1,12 @@
-pragma solidity ^0.4.20;
+pragma solidity ^0.4.24;
 
 contract MetaStellar {
     struct Ra {
-        uint raDecimal; uint raHour; uint raMinute; uint raSecond;
+        int raDecimal; int raHour; int raMinute; int raSecond;
     }
 
     struct Dec {
-        uint decDecimal; int decDegree; uint decMinute; uint decSecond;
+        int decDecimal; int decDegree; int decMinute; int decSecond;
     }
 
     struct Voyager {
@@ -26,9 +26,10 @@ contract MetaStellar {
 
     address public cosmos;
     mapping(address => uint) galaxy; // number of stars each Voyager has.
-    mapping(uint => Astro) constellation; // find Astro by id(foreign key).
+    mapping(uint => Astro) public constellation; // find Astro by id(foreign key).
     uint public minimumPrice;
     uint public lastId;
+    uint public multiplier;
 
     modifier cosmosOnly() {
         require(msg.sender == cosmos);
@@ -38,9 +39,11 @@ contract MetaStellar {
     constructor(address creator, uint minPrice) public {
         cosmos = creator;
         minimumPrice = minPrice;
+        lastId = 0;
+        multiplier = 18;
     }
 
-    function registerAstro(uint raD, uint raH, uint raM, uint raS, uint decDec, int decDeg, uint decM, uint decS, string name, string url) public payable cosmosOnly {
+    function registerAstro(int raD, int raH, int raM, int raS, int decDec, int decDeg, int decM, int decS, string name, string url) public payable cosmosOnly {
         Ra memory ra = Ra({raDecimal : raD, raHour : raH, raMinute : raM, raSecond : raS});
         Dec memory dec = Dec({decDecimal : decDec, decDegree : decDeg, decMinute : decM, decSecond : decS});
         Voyager memory voyager = Voyager({owner : msg.sender, name : 'Astro'});
@@ -73,4 +76,46 @@ contract MetaStellar {
         galaxy[msg.sender]++;
     }
 
+/*
+    function getAstro(uint _id) public returns (
+        uint id,
+        int raD,
+        int raH,
+        int raM,
+        int raS,
+        int decDec,
+        int decDeg,
+        int decM,
+        int decS,
+        string voyagerName,
+        address voyagerOwner,
+        string name,
+        string url,
+        uint lastBid)
+    {
+        Astro storage current_astro = constellation[_id];
+        Voyager memory current_voyager = current_astro.voyager;
+        Ra memory current_ra = current_astro.ra;
+        Dec memory current_dec = current_astro.dec;
+
+        id = _id;
+        raD = current_ra.raDecimal;
+        raH = current_ra.raHour;
+        raM = current_ra.raMinute;
+        raS = current_ra.raSecond;
+        decDec = current_dec.decDecimal;
+        decDeg = current_dec.decDegree;
+        decM = current_dec.decMinute;
+        decS = current_dec.decSecond;
+        voyagerName = current_voyager.name;
+        voyagerOwner = current_voyager.owner;
+        name = current_astro.name;
+        url = current_astro.url;
+        lastBid = current_astro.lastBid;
+
+        return (id, raD, raH, raM, raS, decDec, decDeg, decM, decS, voyagerName, voyagerOwner, name, url, lastBid);
+    }
+*/
+
 }
+

@@ -44,5 +44,3 @@ const deploy = async () => {
 };
 
 deploy();
-
-let demo = [1, 1, 1, 1, 1, 1, 1, 1, "Astro", "http://naver.com"];
