@@ -4,40 +4,32 @@ const path = require('path');
 const fs = require('fs-extra');
 const Web3 = require('web3');
 const provider = new HDWalletProvider(
-    'voyage slam leave gasp mansion armor ivory size throw visa blast weasel',
-    'https://rinkeby.infura.io/1n7ngBVFQi37NC1sj4Rj'
+    'hero coil cattle wait antique else wall any chef reason man fatigue',
+    'https://ropsten.infura.io/1n7ngBVFQi37NC1sj4Rj'
 );
 
 const web3 = new Web3(provider);
 const samplePath = path.resolve(__dirname, '../constellation.json');
 const sampleStars = JSON.parse(fs.readFileSync(samplePath, 'utf8'));
-
-const registerStar = async (star, deployer) => {
-  const {name} = star.target;
-  const {ra, dec} = star;
-  const astroParams = [
-      ra.decimal, dec.decimal, name, 'https://metadium.com/'
-  ];
-  const result = await new web3.eth.Contract(JSON.parse(compiledMetaStellar.interface))
-      .methods.registerAstro(astroParams)
-      .send({gas: '1000000', from: deployer});
-
-  console.log(`Tx for ${name}`, result.options.address);
-};
+let metaStellar;
 
 const deploy = async () => {
   const accounts = await web3.eth.getAccounts();
   const deployer = accounts[0];
-  const initialParams = [deployer, web3.utils.toWei('0.01', 'ether')];
-  const result = await new web3.eth.Contract(JSON.parse(compiledMetaStellar.interface))
-      .deploy({data: compiledMetaStellar.bytecode, arguments: initialParams})
-      .send({gas: '1000000', from: deployer});
+  console.log('Attempting to deploy from account : ', deployer);
+  console.log('current gas : ', web3.utils.fromWei(await web3.eth.getBalance(accounts[0]), 'ether'));
 
-  console.log('Contract deployed to', result.options.address);
+  metaStellar = await new web3.eth.Contract(JSON.parse(compiledMetaStellar.interface))
+      .deploy({data: compiledMetaStellar.bytecode, arguments: [deployer, 1000000000000000]})
+      .send({gas: 4000000, from: deployer, gasPrice: '4000000000'});
 
-  await sampleStars.map(async star => {
-    await registerStar(star, deployer)
-  });
+  console.log('Contract deployed to', metaStellar.options.address);
+
+/*  await Promise.all(sampleStars.map(async (star, index) => {
+    const {ra, dec, target} = star;
+    await new metaStellar.methods.registerAstro(ra.decimal, dec.decimal, target.name, 'https://metadium.com/').send({gas: 4000000, from: deployer})
+        .then(() => console.log(index));
+  }));*/
 
   console.log('BigBang !');
 

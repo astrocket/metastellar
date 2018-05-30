@@ -3,9 +3,9 @@ require 'optparse'
 
 environment = {}
 
-optparse = OptionParser.new do|opts|
+optparse = OptionParser.new do |opts|
   environment[:test] = false
-  opts.on( '-test', '--test', 'Generated only 5 stars.' ) do
+  opts.on( '-test', '--test', 'Generates only 5 stars.' ) do
     environment[:test] = true
   end
 end
