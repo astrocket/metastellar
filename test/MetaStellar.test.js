@@ -13,7 +13,6 @@ let accounts;
 let metaStellar;
 let deployerInfo;
 let initialParams;
-let deployedConstellation;
 
 beforeEach(async () => {
   accounts = await web3.eth.getAccounts();
@@ -26,13 +25,15 @@ beforeEach(async () => {
       .deploy({ data: compiledMetaStellar.bytecode, arguments: initialParams })
       .send(deployerInfo);
   console.log(await web3.eth.getBalance(accounts[0]));
-  await sampleStars.map(async star => {
-    const {name} = star.target;
-    const {ra, dec} = star;
+  await sampleStars.forEach(async star => {
+    this.timeout(15000);
+
+    const {ra, dec, target} = star;
 
     await metaStellar.methods
-        .registerAstro(ra.decimal, ra.h, ra.m, ra.s, dec.decimal, dec.d, dec.m, dec.s, name, 'https://www.naver.com')
+        .registerAstro(ra.decimal * 1000, dec.decimal * 1000, target.name, 'https://metadium.com')
         .send(deployerInfo);
+    console.log(await web3.eth.getBalance(accounts[0]));
   });
 });
 
@@ -51,10 +52,7 @@ describe('MetaStellar', () => {
 
     await sampleStars.map(async (star, index) => {
       const deployedStar = await metaStellar.methods.getAstro(index + 1).call();
-      console.log(deployedStar);
-      //assert.equal(star, deployedStar)
+      assert.equal(star.ra.decimal + 1000, deployedStar.raDecimal)
     });
-
-    console.log(deployedConstellation);
   });
 });

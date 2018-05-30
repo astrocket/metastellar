@@ -16,7 +16,7 @@ const registerStar = async (star, deployer) => {
   const {name} = star.target;
   const {ra, dec} = star;
   const astroParams = [
-      ra.decimal, ra.h, ra.m, ra.s, dec.decimal, dec.d, dec.m, dec.s, name, 'https://www.naver.com'
+      ra.decimal, dec.decimal, name, 'https://metadium.com/'
   ];
   const result = await new web3.eth.Contract(JSON.parse(compiledMetaStellar.interface))
       .methods.registerAstro(astroParams)
