@@ -1,16 +1,30 @@
 import React, {Component} from 'react';
-
+import {Astro} from './index';
 export default class VirtualSky extends Component {
 
   constructor() {
     super();
     this.state = {
-      name: '/'
+      name: '/',
+      modalOpen: false,
+      currentAstro: {
+        target: {name: 'Astro'},
+        ra: {decimal: 0},
+        dec: {decimal: 0}
+      },
+      currentMetaID: {
+        name: '이한결',
+        joined: '2018년 5월 부터 소유중',
+        about: '코인플러그 개발자',
+        image: 'https://apod.nasa.gov/apod/image/9612/sagan_uc.gif'
+      }
     }
   }
 
   componentDidMount() {
-    $.virtualsky({
+    this.$sky = $(this.sky);
+
+    this.vs = $.virtualsky({
       id: 'starmap',
       projection: 'stereo',
       credit: false,
@@ -21,13 +35,21 @@ export default class VirtualSky extends Component {
       showStars: true,
       showstarlabels: true,
       objects: this.props.astros,
-      onClickObject: (o) => this.setName(o.target.name),
+      onClickObject: (o) => this.openAstroModal(o),
     });
   }
 
   setName(name) {
     this.setState({ name });
     alert('MetaMask open');
+  }
+
+  objectTemplate(object) {
+    return (
+        <div class="container" key={object.target.name}>
+          <a onClick={() => this.setName(object.target.name)} style="color: black; cursor: pointer;">hi</a>
+        </div>
+    );
   }
 
   sampleCallMetaMask() {
@@ -41,18 +63,34 @@ export default class VirtualSky extends Component {
   }
 
   moveTo() {
-    this.planetarium.panTo(56.8690917,24.1053111,3000);
+    console.log(this.vs);
+    this.vs.toggleNegative();
+  }
+
+  openAstroModal(object) {
+    this.setState({currentAstro: object}, () => {
+      this.handleOpen()
+    })
+  };
+
+  handleOpen() {
+    this.setState({ modalOpen: true })
+  }
+  handleClose() {
+    this.setState({ modalOpen: false })
   }
 
   render() {
     return (
-        <div>
-          <div ref={sky => this.sky = sky} id={"starmap"} style={styles.container}></div>
-          <h1>{this.props.mapShow ?
-            'True' : 'False'
-          }</h1>
-          <h3>{this.state.name}</h3>
-          <button onClick={() => this.moveTo()}>이동</button>
+        <div ref={sky => this.sky = sky}>
+          <div id={"starmap"} style={styles.container}></div>
+          <Astro
+              astro={this.state.currentAstro}
+              modalOpen={this.state.modalOpen}
+              handleOpen={() => this.handleOpen()}
+              handleClose={() => this.handleClose()}
+              metaID={this.state.currentMetaID}
+          />
         </div>
     );
   }
