@@ -774,17 +774,12 @@ function (_Component) {
       var _getInitialProps = _asyncToGenerator(
       /*#__PURE__*/
       __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.mark(function _callee3() {
-        var lastId, astros;
+        var astros;
         return __WEBPACK_IMPORTED_MODULE_0__babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return __WEBPACK_IMPORTED_MODULE_2__ethereum_metaStellar_js__["a" /* default */].methods.lastId().call();
-
-              case 2:
-                lastId = _context3.sent;
-                _context3.next = 5;
                 return __WEBPACK_IMPORTED_MODULE_2__ethereum_metaStellar_js__["a" /* default */].methods.lastId().call().then(
                 /*#__PURE__*/
                 function () {
@@ -796,10 +791,9 @@ function (_Component) {
                       while (1) {
                         switch (_context2.prev = _context2.next) {
                           case 0:
-                            starIndexes = Array.from(Array(res.lastId)).map(function (e, i) {
+                            starIndexes = Array.from(Array(parseInt(res))).map(function (e, i) {
                               return i + 1;
-                            }); // 여기가 뭔가 순차처리가 안된다....
-
+                            });
                             _context2.next = 3;
                             return Promise.all(starIndexes.map(
                             /*#__PURE__*/
@@ -858,14 +852,13 @@ function (_Component) {
                   };
                 }());
 
-              case 5:
+              case 2:
                 astros = _context3.sent;
                 return _context3.abrupt("return", {
-                  astros: astros,
-                  lastId: lastId
+                  astros: astros
                 });
 
-              case 7:
+              case 4:
               case "end":
                 return _context3.stop();
             }
@@ -910,14 +903,14 @@ function (_Component) {
       return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_index__["b" /* Layout */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 50
+          lineNumber: 47
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_VirtualSky__["a" /* default */], {
         astros: this.props.astros,
         mapShow: this.state.mapShow,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 51
+          lineNumber: 48
         }
       }));
     }

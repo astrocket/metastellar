@@ -6,12 +6,10 @@ import VirtualSky from '../components/VirtualSky';
 
 class MetaStellarIndex extends Component {
   static async getInitialProps() {
-    const lastId = await metaStellar.methods.lastId().call();
-
     const astros = await metaStellar.methods.lastId().call()
         .then(async (res) => {
-          const starIndexes = Array.from(Array(res.lastId)).map((e,i)=>i+1);
-          // 여기가 뭔가 순차처리가 안된다....
+          const starIndexes = Array.from(Array(parseInt(res))).map((e,i)=>i+1);
+
           return await Promise.all(starIndexes.map(async (id) => {
             const rawAstro = await metaStellar.methods.getAstro(id).call();
             return {
@@ -22,8 +20,7 @@ class MetaStellarIndex extends Component {
           }));
         });
     return {
-      astros: astros,
-      lastId: lastId
+      astros: astros
     };
   }
 
