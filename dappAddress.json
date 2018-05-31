@@ -1,7 +1,5 @@
 {
-  "addresses": {
-    "main_net": "",
-    "ropsten_test_net": "",
-    "rinkeby_test_net": ""
-  }
+  "main_net": "",
+  "ropsten": "0xFda7a926b117900431462082A756199b3D2d4de4",
+  "rinkeby": ""
 }
