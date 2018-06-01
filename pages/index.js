@@ -15,7 +15,13 @@ class MetaStellarIndex extends Component {
             return {
               target: {name: rawAstro.name},
               ra: {decimal: rawAstro.raDecimal / 1000},
-              dec: {decimal: rawAstro.decDecimal / 1000}
+              dec: {decimal: rawAstro.decDecimal / 1000},
+              metaID: {
+                name: rawAstro.metaIDName,
+                owner: rawAstro.metaIDOwner,
+                url: rawAstro.url
+              },
+              lastBid: rawAstro.lastBid
             }
           }));
         });

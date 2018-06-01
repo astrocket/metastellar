@@ -12,8 +12,8 @@ end
 
 optparse.parse!
 
-RAW_FILE = "raw_stars.json"
-CONSTELLATION_FILE = "./static/data/constellation.json"
+RAW_FILE = "./static/data/stars.json"
+CONSTELLATION_FILE = "./static/data/star_seed.json"
 
 raw_stars = File.open(RAW_FILE, "r")
 stars_array = JSON.parse(raw_stars.read)["stars"]
@@ -32,4 +32,4 @@ formatted_file = File.new(CONSTELLATION_FILE, "w")
 formatted_file.puts(formatted_stars.to_json)
 formatted_file.close
 
-p "#{environment[:test] ? 'Test' : ''} Constellation Generated."
+p "#{environment[:test] ? 'Test ' : ''}Star Seeds Generated."

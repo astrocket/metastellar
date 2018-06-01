@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Modal, Button, Icon, Header} from 'semantic-ui-react';
 import {MetaID} from "./index";
 
-const Astro = ({astro, modalOpen, handleOpen, handleClose, metaID}) => {
+const Astro = ({astro, modalOpen, handleOpen, handleClose}) => {
   return (
       <Modal
           open={modalOpen}
@@ -18,14 +18,14 @@ const Astro = ({astro, modalOpen, handleOpen, handleClose, metaID}) => {
             {`You can put your name on it.`}
           </p>
           <MetaID
-              metaID={metaID}
+              metaID={astro.metaID}
               starImage={`http://server7.sky-map.org/imgcut?survey=DSS2&w=128&h=128&ra=${astro.ra.decimal}&de=${astro.dec.decimal}&angle=1.25&output=PNG`}
               starUrl={`http://server1.wikisky.org/v2?ra="+(${astro.ra.decimal}/15)+"&de="+(${astro.dec.decimal})+"&zoom=6&img_source=DSS2`}
           />
         </Modal.Content>
         <Modal.Actions>
           <Button color='green' onClick={handleClose} inverted>
-            <Icon name='checkmark'/> Open Metamask & Buy this star.
+            <Icon name='checkmark'/>{`This star's minimum price is currently : ${astro.lastBid}`}
           </Button>
         </Modal.Actions>
       </Modal>

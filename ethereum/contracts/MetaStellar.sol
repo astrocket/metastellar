@@ -55,8 +55,10 @@ contract MetaStellar {
     }
 
     function buyAstro(uint _targetAstroId, string _metaIDName, string _url) public payable {
-        require(msg.value > minimumPrice);
         Astro storage targetAstro = constellation[_targetAstroId];
+
+        require(msg.value > minimumPrice + targetAstro.lastBid);
+
         MetaID memory lastMetaID = targetAstro.metaID;
         MetaID memory newMetaID = MetaID({
             owner : msg.sender,
@@ -93,4 +95,5 @@ contract MetaStellar {
 
         return (id, raDecimal, decDecimal, metaIDName, metaIDOwner, name, url, lastBid);
     }
+
 }

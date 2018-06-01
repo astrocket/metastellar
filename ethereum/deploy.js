@@ -34,7 +34,6 @@ const deploy = async () => {
 
   console.log('Contract deployed to', metaStellar.options.address);
 
-
 };
 
 const bigbang = async () => {
@@ -47,38 +46,11 @@ const bigbang = async () => {
       dappAddress.ropsten
   );
 
-/*  const starPromises = sampleStars.map(async (star, i) => {
-    console.log(`Star #${i} deployed`);
-    console.log('=>', JSON.stringify(star));
-
-    var tempRet = deployedMetaStellar.methods.registerAstro(star.ra.decimal * 1000, star.dec.decimal * 1000, star.target.name, `https://metadium.com`);
-    var tempFunc = function(temp) {
-      return temp.send(deployerInfo);
-    };
-
-    if (firstTemp == null) {
-      firstTemp = tempRet;
-    } else {
-      if (firstTemp === tempRet) {
-        console.log('temp equal...!!');
-      }
-    }
-
-    await tempFunc(tempRet);
-    return `Star #${i} transaction completed`;
-
-  });
-
-  // log them in sequence
-  for (const starPromise of starPromises) {
-    console.log(await starPromise);
-  }*/
-
   var idx = 0;
 
   var callReg = function () {
     if (idx < sampleStars.length) {
-      star = sampleStars[idx];
+      var star = sampleStars[idx];
       idx++;
       console.log(idx);
       deployedMetaStellar.methods.registerAstro(star.ra.decimal * 1000, star.dec.decimal * 1000, star.target.name, `https://metadium.com`).send(deployerInfo).then(function() {

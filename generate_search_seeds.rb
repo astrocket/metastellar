@@ -75,7 +75,8 @@ class Universe
                 target: {name: name},
                 ra: {decimal: ra_decimal},
                 dec: {decimal: dec_decimal },
-                type: TERM[:"#{locale}"][:"#{type}"]
+                type: type,
+                type_locale: TERM[:"#{locale}"][:"#{type}"]
             }
         end
 end

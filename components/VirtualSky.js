@@ -7,7 +7,7 @@ import virtualskyInitializer from '../static/data/initializer.json';
 const formattedSearchBase = searchBase.map((star) => {
   return {
     key: star.target.name, value: star, text: star.target.name,
-    content: <Header className={'ui header text search-result-bar'} icon={`${star.type==='star'?'empty ':''}star`} content={star.target.name} subheader={star.type} />
+    content: <Header className={'ui header text search-result-bar'} icon={`${star.type==='star'?'empty ':''}star`} content={star.target.name} subheader={star.type_locale} />
   }
 });
 
@@ -102,7 +102,6 @@ export default class VirtualSky extends Component {
               modalOpen={this.state.modalOpen}
               handleOpen={() => this.handleOpen()}
               handleClose={() => this.handleClose()}
-              metaID={this.state.currentMetaID}
           />
         </div>
     );
