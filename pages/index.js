@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import metaStellar from '../ethereum/metaStellar.js';
 import {Layout, Astro, Constellation} from '../components/index';
-import sampleAstros from '../constellation.json';
+import sampleAstros from '../static/data/star_seed.json';
 import VirtualSky from '../components/VirtualSky';
 
 class MetaStellarIndex extends Component {

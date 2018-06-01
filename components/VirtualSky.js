@@ -1,5 +1,16 @@
 import React, {Component} from 'react';
 import {Astro} from './index';
+import {Dropdown, Header} from 'semantic-ui-react';
+import LayoutHeader from './Header';
+import searchBase from '../static/data/ko/search_base.json';
+import virtualskyInitializer from '../static/data/initializer.json';
+const formattedSearchBase = searchBase.map((star) => {
+  return {
+    key: star.target.name, value: star, text: star.target.name,
+    content: <Header className={'ui header text search-result-bar'} icon={`${star.type==='star'?'empty ':''}star`} content={star.target.name} subheader={star.type} />
+  }
+});
+
 export default class VirtualSky extends Component {
 
   constructor() {
@@ -22,21 +33,13 @@ export default class VirtualSky extends Component {
   }
 
   componentDidMount() {
-    this.$sky = $(this.sky);
-
     this.vs = $.virtualsky({
       id: 'starmap',
-      projection: 'stereo',
-      credit: false,
-      constellations: true,
-      constellationlabels: true,
-      showorbits: false,
-      showgalaxy: false,
-      showStars: true,
-      showstarlabels: true,
+      lang: 'ko',
       objects: this.props.astros,
+      ...virtualskyInitializer,
       onClickObject: (o) => this.openAstroModal(o),
-    });
+    })
   }
 
   setName(name) {
@@ -62,9 +65,11 @@ export default class VirtualSky extends Component {
     stringHolder.setString('Sending' + ether + 'ETH' , console.log)
   }
 
-  moveTo() {
-    console.log(this.vs);
-    this.vs.toggleNegative();
+  moveTo(star) {
+    var self=this;
+    setTimeout(function(){
+      self.vs.panTo(star.ra.decimal, star.dec.decimal,500);
+    }, 10);
   }
 
   openAstroModal(object) {
@@ -82,8 +87,16 @@ export default class VirtualSky extends Component {
 
   render() {
     return (
-        <div ref={sky => this.sky = sky}>
+        <div>
           <div id={"starmap"} style={styles.container}></div>
+          <LayoutHeader>
+            <Dropdown
+                placeholder='Search Star by name.'
+                fluid selection search
+                options={formattedSearchBase}
+                onChange={(e, { value }) => this.moveTo(value)}
+            />
+          </LayoutHeader>
           <Astro
               astro={this.state.currentAstro}
               modalOpen={this.state.modalOpen}

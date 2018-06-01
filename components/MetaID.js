@@ -1,20 +1,24 @@
 import React from 'react';
 import {Card, Image, Icon} from 'semantic-ui-react';
 
-const MetaID = ({metaID}) => {
+const MetaID = ({metaID, starImage, starUrl}) => {
   const { name, joined, about, image } = metaID;
 
   return (
       <Card>
-        <Image src={image} />
+        <Image
+            src={starImage}
+            href={starUrl}
+            as='a'
+            target='_blank'
+        />
         <Card.Content>
+          <Image floated='right' size='mini' src={image} />
           <Card.Header>
             {name}
           </Card.Header>
           <Card.Meta>
-        <span className='date'>
-          {joined}
-        </span>
+            {joined}
           </Card.Meta>
           <Card.Description>
             {about}

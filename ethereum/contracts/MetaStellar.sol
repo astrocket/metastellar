@@ -93,7 +93,4 @@ contract MetaStellar {
 
         return (id, raDecimal, decDecimal, metaIDName, metaIDOwner, name, url, lastBid);
     }
-
-
 }
-

@@ -1,18 +1,13 @@
 import React from 'react';
-import {Menu, Dropdown} from 'semantic-ui-react';
-import sampleAstros from '../constellation.json';
-const formattedAstros = sampleAstros.map((star) => {
-  return { key: star.target.name, value: star.target.name, text: star.target.name }
-});
+import {Menu} from 'semantic-ui-react';
 
-export default () => {
+export default (props) => {
   return (
-      <Menu inverted style={{margin: '10px'}} class={'meta-header ui menu'}>
+      <Menu inverted style={{margin: '10px'}} className={'meta-header ui menu'}>
         <Menu.Item>
           MetaStellar
         </Menu.Item>
-        <Dropdown placeholder='Search Star by name.' fluid multiple search selection options={formattedAstros} />
-
+        {props.children}
         <Menu.Menu position="right">
           <Menu.Item>
             Constellation

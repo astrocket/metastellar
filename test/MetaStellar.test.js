@@ -7,7 +7,7 @@ const web3 = new Web3(ganache.provider());
 const BigNumber = require('bignumber.js');
 
 const compiledMetaStellar = require('../ethereum/build/MetaStellar.json');
-const samplePath = path.resolve(__dirname, '../constellation.json');
+const samplePath = path.resolve(__dirname, '../star_seed.json');
 const sampleStars = JSON.parse(fs.readFileSync(samplePath, 'utf8'));
 
 let accounts;

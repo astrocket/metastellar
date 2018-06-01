@@ -1,7 +1,6 @@
 import React from 'react';
 import {Container} from 'semantic-ui-react';
 import Head from 'next/head';
-import Header from './Header';
 
 const Layout = (props) => {
   return (
@@ -14,7 +13,6 @@ const Layout = (props) => {
           <link rel="stylesheet" type="text/css" href="/static/css/application.css"/>
         </Head>
         {props.children}
-        <Header/>
       </Container>
   )
 };

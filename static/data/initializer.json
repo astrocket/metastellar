@@ -1,0 +1,11 @@
+{
+  "projection": "gnomic",
+  "fov": "0",
+  "credit": false,
+  "constellations": true,
+  "constellationlabels": true,
+  "showorbits": false,
+  "showgalaxy": false,
+  "showStars": true,
+  "showstarlabels": true
+}

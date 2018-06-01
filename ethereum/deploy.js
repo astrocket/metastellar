@@ -9,9 +9,9 @@ const provider = new HDWalletProvider(
 );
 
 const web3 = new Web3(provider);
-const samplePath = path.resolve(__dirname, '../constellation.json');
+const samplePath = path.resolve(__dirname, '../static/data/star_seed.json');
 const sampleStars = JSON.parse(fs.readFileSync(samplePath, 'utf8'));
-const dappAddressPath = path.resolve(__dirname, '../dappAddress.json');
+const dappAddressPath = path.resolve(__dirname, '../static/data/dappAddress.json');
 const dappAddress = JSON.parse(fs.readFileSync(dappAddressPath, 'utf8'));
 
 let metaStellar;
