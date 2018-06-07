@@ -1,13 +1,16 @@
 import React from 'react';
-import {Menu} from 'semantic-ui-react';
+import {Menu, Sticky} from 'semantic-ui-react';
 
 export default (props) => {
   return (
-      <Menu inverted style={{margin: '10px'}} className={'meta-header ui menu'}>
+      <Sticky style={{zIndex: 9999, position: 'relative'}} offset={10} >
+        <Menu className={'meta-header ui menu'} style={{width: '90vw', margin: '0 5vw'}}>
         <Menu.Item>
-          MetaStellar
+          <a href="/">MetaStellar</a>
         </Menu.Item>
-        {props.children}
+        <Menu.Item>
+          {props.children}
+        </Menu.Item>
         <Menu.Menu position="right">
           <Menu.Item>
             Constellation
@@ -17,5 +20,6 @@ export default (props) => {
           </Menu.Item>
         </Menu.Menu>
       </Menu>
+      </Sticky>
   )
 }

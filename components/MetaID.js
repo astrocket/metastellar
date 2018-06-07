@@ -1,8 +1,8 @@
 import React from 'react';
 import {Card, Image, Icon} from 'semantic-ui-react';
 
-const MetaID = ({metaID, starImage, starUrl}) => {
-  const { name, owner } = metaID;
+const MetaID = ({metaID, starImage, starUrl, starPrice}) => {
+  const { name, owner, sns } = metaID;
 
   return (
       <Card>
@@ -15,19 +15,18 @@ const MetaID = ({metaID, starImage, starUrl}) => {
         <Card.Content>
           <Image floated='right' size='mini' src={'https://apod.nasa.gov/apod/image/9612/sagan_uc.gif'} />
           <Card.Header>
-            {name}
+            {`${name}'s`} <a href={`/user?address=${owner}`} target={'_blank'}>space</a>
           </Card.Header>
           <Card.Meta>
-            {'email info from metaid'}
+            {`I paid ${starPrice} ETH for this.`}
           </Card.Meta>
           <Card.Description>
-            {'phone number from metaid'}
+            <a href={`https://${sns}`} target={'_blank'}>{sns}</a>
           </Card.Description>
         </Card.Content>
         <Card.Content extra>
           <a href={`https://ropsten.etherscan.io/address/${owner}`} target={'_blank'}>
-            <Icon name='star' />
-            Owner's ether address.
+            Address
           </a>
         </Card.Content>
       </Card>

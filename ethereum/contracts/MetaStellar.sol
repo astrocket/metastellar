@@ -5,6 +5,7 @@ contract MetaStellar {
     struct MetaID {
         address owner;
         string name;
+        string sns;
     }
 
     struct Astro {
@@ -14,11 +15,11 @@ contract MetaStellar {
         int decDecimal; // multiplied by 1000
         MetaID metaID; // owner's MetaID.
         uint lastBid; // default 0
-        string url; // Initially everipedia url for matching star. Let users to change this.
     }
 
     address public cosmos;
-    mapping(address => uint) starBucket; // number of stars each MetaID has.
+    mapping(address => mapping(uint => uint)) public astroBucketIndex;
+    mapping(address => uint[]) public astroBucket; // ids of stars each MetaID has.
     mapping(uint => Astro) public constellation; // find Astro by id(foreign key).
     uint public minimumPrice;
     uint public lastId;
@@ -36,49 +37,68 @@ contract MetaStellar {
         multiplier = 18;
     }
 
-    function registerAstro(int _raDecimal, int _decDecimal, string _name, string _url) public payable cosmosOnly {
-        MetaID memory metaID = MetaID({owner : msg.sender, name : 'Metadium'});
-
+    function registerAstro(int _raDecimal, int _decDecimal, string _name) public payable cosmosOnly {
+        MetaID memory metaID = MetaID({owner : msg.sender, name : 'Metadium', sns: 'metadium.com'});
+        uint newAstroId = ++lastId;
         Astro memory astro = Astro({
-            id : lastId + 1, // increment!
+            id : newAstroId, // increment!
             name : _name,
             raDecimal : _raDecimal,
             decDecimal : _decDecimal,
             metaID : metaID,
-            lastBid : 0,
-            url : _url
+            lastBid : 0
             });
 
-        lastId++;
-        constellation[lastId] = astro;
-        starBucket[msg.sender];
+        constellation[newAstroId] = astro;
+        addToBucket(msg.sender, newAstroId);
     }
 
-    function buyAstro(uint _targetAstroId, string _metaIDName, string _url) public payable {
+    function buyAstro(uint _targetAstroId, string _metaIDName, string _metaIDSns) public payable {
         Astro storage targetAstro = constellation[_targetAstroId];
 
-        require(msg.value > minimumPrice + targetAstro.lastBid);
+        require(msg.value >= minimumPrice + targetAstro.lastBid);
 
         MetaID memory lastMetaID = targetAstro.metaID;
         MetaID memory newMetaID = MetaID({
             owner : msg.sender,
-            name : _metaIDName
+            name : _metaIDName,
+            sns : _metaIDSns
             });
         targetAstro.metaID = newMetaID;
-        targetAstro.url = _url;
+        targetAstro.lastBid = msg.value;
         lastMetaID.owner.transfer(msg.value);
-        starBucket[lastMetaID.owner]--;
-        starBucket[msg.sender]++;
+        removeFromBucket(lastMetaID.owner, _targetAstroId);
+        addToBucket(msg.sender, _targetAstroId);
+    }
+
+    function addToBucket(address _hodler, uint _astroId) internal {
+        uint bucketId = astroBucket[_hodler].length;
+        astroBucketIndex[_hodler][_astroId] = bucketId;
+        astroBucket[_hodler].push(_astroId);
+    }
+
+    function removeFromBucket(address _hodler, uint _astroId ) internal {
+        uint bucketId = astroBucketIndex[_hodler][_astroId];
+        uint bucketLength = astroBucket[_hodler].length;
+        uint lastAstroInBucket = astroBucket[_hodler][bucketLength-1];
+        delete astroBucket[_hodler][bucketId];
+        astroBucket[_hodler][bucketId] = lastAstroInBucket;
+        delete astroBucket[_hodler][bucketLength-1];
+        astroBucket[_hodler].length--;
+    }
+
+    function getBucketLength(address _hodler) view public returns (uint length) {
+        return astroBucket[_hodler].length;
     }
 
     function getAstro(uint _id) view public returns (
         uint id,
         int raDecimal,
         int decDecimal,
+        string name,
         string metaIDName,
         address metaIDOwner,
-        string name,
-        string url,
+        string metaIDSns,
         uint lastBid)
     {
         Astro storage currentAstro = constellation[_id];
@@ -87,13 +107,12 @@ contract MetaStellar {
         id = _id;
         raDecimal = currentAstro.raDecimal;
         decDecimal = currentAstro.decDecimal;
+        name = currentAstro.name;
         metaIDName = currentMetaID.name;
         metaIDOwner = currentMetaID.owner;
-        name = currentAstro.name;
-        url = currentAstro.url;
+        metaIDSns = currentMetaID.sns;
         lastBid = currentAstro.lastBid;
 
-        return (id, raDecimal, decDecimal, metaIDName, metaIDOwner, name, url, lastBid);
+        return (id, raDecimal, decDecimal, name, metaIDName, metaIDOwner, metaIDSns, lastBid);
     }
-
 }

@@ -46,14 +46,14 @@ const bigbang = async () => {
       dappAddress.ropsten
   );
 
-  var idx = 0;
+  var idx = await deployedMetaStellar.methods.lastId().call();
 
   var callReg = function () {
     if (idx < sampleStars.length) {
       var star = sampleStars[idx];
       idx++;
       console.log(idx);
-      deployedMetaStellar.methods.registerAstro(star.ra.decimal * 1000, star.dec.decimal * 1000, star.target.name, `https://metadium.com`).send(deployerInfo).then(function() {
+      deployedMetaStellar.methods.registerAstro(star.ra.decimal * 1000, star.dec.decimal * 1000, star.target.name).send(deployerInfo).then(function() {
         setTimeout(function() { callReg(); }, 10);
       });
     } else {
