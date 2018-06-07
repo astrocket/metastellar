@@ -78,7 +78,6 @@ class MetaStellarIndex extends Component {
             }
           });
     }
-    console.log(this.props.ranking);
   }
 
   render() {

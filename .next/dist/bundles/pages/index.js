@@ -1222,12 +1222,12 @@ module.exports = {"assembly":{".code":[{"begin":26,"end":3882,"name":"PUSH","val
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__web3__ = __webpack_require__("./ethereum/web3.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__build_MetaStellar_json__ = __webpack_require__("./ethereum/build/MetaStellar.json");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__build_MetaStellar_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__build_MetaStellar_json__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_data_dappAddress_json__ = __webpack_require__("./static/data/dappAddress.json");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_data_dappAddress_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__static_data_dappAddress_json__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_data_credentials_json__ = __webpack_require__("./static/data/credentials.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__static_data_credentials_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__static_data_credentials_json__);
 
 
 
-var instance = new __WEBPACK_IMPORTED_MODULE_0__web3__["a" /* default */].eth.Contract(JSON.parse(__WEBPACK_IMPORTED_MODULE_1__build_MetaStellar_json___default.a.interface), __WEBPACK_IMPORTED_MODULE_2__static_data_dappAddress_json___default.a.ropsten);
+var instance = new __WEBPACK_IMPORTED_MODULE_0__web3__["a" /* default */].eth.Contract(JSON.parse(__WEBPACK_IMPORTED_MODULE_1__build_MetaStellar_json___default.a.interface), __WEBPACK_IMPORTED_MODULE_2__static_data_credentials_json___default.a.ropsten);
 /* harmony default export */ __webpack_exports__["a"] = (instance);
 
 /***/ }),
@@ -1238,6 +1238,9 @@ var instance = new __WEBPACK_IMPORTED_MODULE_0__web3__["a" /* default */].eth.Co
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web3__ = __webpack_require__("web3");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web3___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web3__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_data_credentials_json__ = __webpack_require__("./static/data/credentials.json");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__static_data_credentials_json___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__static_data_credentials_json__);
+
 
 var web3;
 
@@ -1246,7 +1249,7 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
 
   console.log('MetaMask connected');
 } else {
-  var provider = new __WEBPACK_IMPORTED_MODULE_0_web3___default.a.providers.HttpProvider('https://ropsten.infura.io/1n7ngBVFQi37NC1sj4Rj');
+  var provider = new __WEBPACK_IMPORTED_MODULE_0_web3___default.a.providers.HttpProvider("https://ropsten.infura.io/".concat(__WEBPACK_IMPORTED_MODULE_1__static_data_credentials_json___default.a.infura_key));
   web3 = new __WEBPACK_IMPORTED_MODULE_0_web3___default.a(provider);
 }
 
@@ -1483,8 +1486,6 @@ function (_Component) {
           }
         });
       }
-
-      console.log(this.props.ranking);
     }
   }, {
     key: "render",
@@ -1493,14 +1494,14 @@ function (_Component) {
         fluid: true,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 86
+          lineNumber: 85
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_VirtualSky__["a" /* default */], {
         astros: this.props.astros,
         rankers: this.props.rankers,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 87
+          lineNumber: 86
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_react_s_alert___default.a, {
         stack: {
@@ -1508,7 +1509,7 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 88
+          lineNumber: 87
         }
       }));
     }
@@ -1521,10 +1522,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./static/data/dappAddress.json":
+/***/ "./static/data/credentials.json":
 /***/ (function(module, exports) {
 
-module.exports = {"main_net":"","ropsten":"0x4337Fc93b6ed4e8558DD386BEbd0BB3FcD186100","rinkeby":""}
+module.exports = {"mainnet":"","ropsten":"0x4337Fc93b6ed4e8558DD386BEbd0BB3FcD186100","rinkeby":"","metadium":"","mneumonics":{"mainnet":"","ropsten":"hero coil cattle wait antique else wall any chef reason man fatigue","rinkeby":"","metadium":""},"infura_key":"1n7ngBVFQi37NC1sj4Rj","metadium_api":""}
 
 /***/ }),
 

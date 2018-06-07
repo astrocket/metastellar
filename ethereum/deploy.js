@@ -3,19 +3,36 @@ const compiledMetaStellar = require('./build/MetaStellar.json');
 const path = require('path');
 const fs = require('fs-extra');
 const Web3 = require('web3');
-const provider = new HDWalletProvider(
-    'hero coil cattle wait antique else wall any chef reason man fatigue',
-    'https://ropsten.infura.io/1n7ngBVFQi37NC1sj4Rj'
-);
 
-const web3 = new Web3(provider);
 const samplePath = path.resolve(__dirname, '../static/data/star_seed.json');
 const sampleStars = JSON.parse(fs.readFileSync(samplePath, 'utf8'));
-const dappAddressPath = path.resolve(__dirname, '../static/data/dappAddress.json');
-const dappAddress = JSON.parse(fs.readFileSync(dappAddressPath, 'utf8'));
+const credentialsPath = path.resolve(__dirname, '../static/data/credentials.json');
+const credentials = JSON.parse(fs.readFileSync(credentialsPath, 'utf8'));
 
-let metaStellar;
 let deployedMetaStellar;
+let web3;
+let network = 'ropsten';
+let http_api = `https://${network}.infura.io/${credentials.infura_key}`;
+let deployContract = false;
+
+const setEnv = async () => {
+  process.argv.slice(2).forEach(function (val, index, array) {
+    if (val.split('=')[0] === 'network') {
+      network = val.split('=')[1];
+      if (val.split('=')[1] === 'metadium') {
+        http_api = credentials.metadium_api;
+      }
+    }
+    if (val === 'contract') {
+      deployContract = true;
+    }
+  });
+
+  const provider = new HDWalletProvider(
+    credentials['mneumonics'][network],
+    http_api)
+  web3 = new Web3(provider);
+}
 
 const deploy = async () => {
   const accounts = await web3.eth.getAccounts();
@@ -28,12 +45,11 @@ const deploy = async () => {
 
   const initialParams = [deployer, web3.utils.toWei('0.001', 'ether')];
 
-  metaStellar = await new web3.eth.Contract(JSON.parse(compiledMetaStellar.interface))
+  deployedMetaStellar = await new web3.eth.Contract(JSON.parse(compiledMetaStellar.interface))
       .deploy({data: compiledMetaStellar.bytecode, arguments: initialParams})
       .send(deployerInfo);
 
-  console.log('Contract deployed to', metaStellar.options.address);
-
+  console.log('Contract deployed to', deployedMetaStellar.options.address);
 };
 
 const bigbang = async () => {
@@ -41,10 +57,12 @@ const bigbang = async () => {
   const deployer = accounts[0];
   const deployerInfo = {gas: '4000000', from: deployer, gasPrice: '4000000000'};
 
-  deployedMetaStellar = await new web3.eth.Contract(
+  if (!deployContract) {
+    deployedMetaStellar = await new web3.eth.Contract(
       JSON.parse(compiledMetaStellar.interface),
-      dappAddress.ropsten
-  );
+      credentials[network]
+    );
+  }
 
   var idx = await deployedMetaStellar.methods.lastId().call();
 
@@ -52,18 +70,20 @@ const bigbang = async () => {
     if (idx < sampleStars.length) {
       var star = sampleStars[idx];
       idx++;
-      console.log(idx);
       deployedMetaStellar.methods.registerAstro(star.ra.decimal * 1000, star.dec.decimal * 1000, star.target.name).send(deployerInfo).then(function() {
         setTimeout(function() { callReg(); }, 10);
       });
+      console.log(`Star name, ${star.target.name} deployed`);
     } else {
-      console.log('done');
+      console.log('All deployed !!!');
     }
   };
 
   callReg();
-
 };
 
-//deploy();
+setEnv();
+if (deployContract) {
+  deploy();
+}
 bigbang();

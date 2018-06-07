@@ -1,4 +1,5 @@
 import Web3 from 'web3';
+import credentials from '../static/data/credentials.json';
 
 let web3;
 
@@ -7,7 +8,7 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
   console.log('MetaMask connected');
 } else {
   const provider = new Web3.providers.HttpProvider(
-      'https://ropsten.infura.io/1n7ngBVFQi37NC1sj4Rj'
+    `https://ropsten.infura.io/${credentials.infura_key}`
   );
   web3 = new Web3(provider);
 }
