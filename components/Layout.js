@@ -13,6 +13,7 @@ const Layout = (props) => {
           <link rel="stylesheet" type="text/css" href="/static/react-s-alert/dist/s-alert-default.css"/>
           <link rel="stylesheet" type="text/css" href="/static/react-s-alert/dist/s-alert-css-effects/slide.css"/>
           <link rel="stylesheet" type="text/css" href="/static/css/application.css"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1"/>
         </Head>
         {props.children}
       </Container>
