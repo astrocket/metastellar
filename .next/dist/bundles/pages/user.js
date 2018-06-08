@@ -488,26 +488,21 @@ var _jsxFileName = "/Users/hangyul/Desktop/Metastellar/metastellar/components/He
       fileName: _jsxFileName,
       lineNumber: 9
     }
-  }, "MetaStellar")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Item, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    }
-  }, props.children), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Menu, {
+  }, "MetaStellar")), props.children, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Menu, {
     position: "right",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 12
     }
   }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
     }
   }, "Constellation"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 16
     }
   }, "+"))));
 });
@@ -703,13 +698,19 @@ var _jsxFileName = "/Users/hangyul/Desktop/Metastellar/metastellar/components/Ra
 
 var RankingList = function RankingList(props) {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ol", {
-    stackable: true,
+    style: {
+      display: 'flex'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     }
-  }, props.rankers.slice(0, 3).map(function (ranker) {
+  }, props.rankers.slice(0, 3).map(function (ranker, index) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
+      key: index,
+      style: {
+        marginRight: '30px'
+      },
       __source: {
         fileName: _jsxFileName,
         lineNumber: 9
@@ -721,7 +722,7 @@ var RankingList = function RankingList(props) {
         fileName: _jsxFileName,
         lineNumber: 9
       }
-    }, ranker));
+    }, "".concat(ranker.substring(0, 8), "...")));
   }));
 };
 
@@ -825,12 +826,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ethereum_web3_js__ = __webpack_require__("./ethereum/web3.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bignumber_js__ = __webpack_require__("bignumber.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_bignumber_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_bignumber_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_index__ = __webpack_require__("./components/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_Header__ = __webpack_require__("./components/Header.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_s_alert__ = __webpack_require__("react-s-alert");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_s_alert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_s_alert__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__ = __webpack_require__("semantic-ui-react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_semantic_ui_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__ = __webpack_require__("semantic-ui-react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_semantic_ui_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_index__ = __webpack_require__("./components/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Header__ = __webpack_require__("./components/Header.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_s_alert__ = __webpack_require__("react-s-alert");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_react_s_alert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_react_s_alert__);
 
 var _jsxFileName = "/Users/hangyul/Desktop/Metastellar/metastellar/pages/user.js";
 
@@ -857,6 +858,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -951,7 +953,7 @@ function (_Component) {
       });
 
       if (!(typeof window !== 'undefined' && typeof window.web3 !== 'undefined')) {
-        __WEBPACK_IMPORTED_MODULE_7_react_s_alert___default.a.info('<h4>Metamask not available.</h4><ul><li><a href="https://metamask.io/" target="_blank">Get Metamask now.</a></li></ul>', {
+        __WEBPACK_IMPORTED_MODULE_8_react_s_alert___default.a.info('<h4>Metamask not available.</h4><ul><li><a href="https://metamask.io/" target="_blank">Get Metamask now.</a></li></ul>', {
           position: 'top-right',
           effect: 'slide',
           html: true,
@@ -960,7 +962,7 @@ function (_Component) {
       } else {
         __WEBPACK_IMPORTED_MODULE_3__ethereum_web3_js__["a" /* default */].eth.net.getNetworkType().then(function (network) {
           if (network !== 'ropsten') {
-            __WEBPACK_IMPORTED_MODULE_7_react_s_alert___default.a.info('<h4>You are not in a ropsten network.</h4><ul><li><a href="https://metamask.io/" target="_blank">Open Metamask and change your network to ropsten.</a></li></ul>', {
+            __WEBPACK_IMPORTED_MODULE_8_react_s_alert___default.a.info('<h4>You are not in a ropsten network.</h4><ul><li><a href="https://metamask.io/" target="_blank">Open Metamask and change your network to ropsten.</a></li></ul>', {
               position: 'top-right',
               effect: 'slide',
               html: true,
@@ -1232,46 +1234,51 @@ function (_Component) {
     value: function render() {
       var _this6 = this;
 
-      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_index__["d" /* Layout */], {
+      return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index__["d" /* Layout */], {
         fluid: true,
         style: {
           margin: '5vw'
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 129
+          lineNumber: 130
         }
-      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_Header__["a" /* default */], {
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7__components_Header__["a" /* default */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 131
+        }
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Menu"].Item, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 132
         }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("h3", {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 131
+          lineNumber: 133
         }
       }, "".concat(this.state.metaID.name, "'s space"), " | ", __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
         href: "https:".concat(this.state.metaID.sns),
         target: '_blank',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 131
+          lineNumber: 133
         }
       }, "SNS"), " | ", __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("a", {
         href: "https://ropsten.etherscan.io/address/".concat(this.state.metaID.owner),
         target: '_blank',
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 131
+          lineNumber: 133
         }
-      }, "Address"))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__components_index__["c" /* AstroList */], {
+      }, "Address")))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__components_index__["c" /* AstroList */], {
         astros: this.state.astros,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 133
+          lineNumber: 136
         }
-      }), this.state.no_more ? null : __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_semantic_ui_react__["Button"], {
+      }), this.state.no_more ? null : __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5_semantic_ui_react__["Button"], {
         fluid: true,
         basic: true,
         loading: this.state.loading,
@@ -1284,15 +1291,15 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 135
+          lineNumber: 138
         }
-      }, "Next Page"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_7_react_s_alert___default.a, {
+      }, "Next Page"), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_8_react_s_alert___default.a, {
         stack: {
           limit: 3
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 138
+          lineNumber: 141
         }
       }));
     }

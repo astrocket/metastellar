@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha",
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
   "homepage": "https://github.com/astrocket/metastellar",
   "dependencies": {
     "bignumber.js": "^7.2.1",
+    "express": "^4.16.3",
     "fs-extra": "^6.0.1",
     "ganache-cli": "^6.1.0",
     "lodash": "^4.17.10",

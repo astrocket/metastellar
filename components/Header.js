@@ -8,9 +8,7 @@ export default (props) => {
         <Menu.Item>
           <a href="/">MetaStellar</a>
         </Menu.Item>
-        <Menu.Item>
-          {props.children}
-        </Menu.Item>
+        {props.children}
         <Menu.Menu position="right">
           <Menu.Item>
             Constellation

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import metaStellar from '../ethereum/metaStellar.js';
 import web3 from '../ethereum/web3.js';
 import {BigNumber} from 'bignumber.js';
+import {Menu} from 'semantic-ui-react';
 import {Layout, Astro, MetaID, AstroList} from '../components/index';
 import LayoutHeader from '../components/Header';
 import Alert from 'react-s-alert';
@@ -128,7 +129,9 @@ export default class User extends Component {
     return (
         <Layout fluid style={{margin: '5vw'}}>
           <LayoutHeader>
+            <Menu.Item>
             <h3>{`${this.state.metaID.name}'s space`} | <a href={`https:${this.state.metaID.sns}`} target={'_blank'}>SNS</a> | <a href={`https://ropsten.etherscan.io/address/${this.state.metaID.owner}`} target={'_blank'}>Address</a></h3>
+            </Menu.Item>
           </LayoutHeader>
           <AstroList astros={this.state.astros}/>
           {this.state.no_more ?

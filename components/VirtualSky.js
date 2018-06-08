@@ -3,7 +3,7 @@ import metaStellar from '../ethereum/metaStellar.js';
 import web3 from '../ethereum/web3';
 import { BigNumber } from 'bignumber.js'
 import {Astro, RankingList} from './index.js';
-import {Dropdown, Header} from 'semantic-ui-react';
+import {Dropdown, Header, Menu} from 'semantic-ui-react';
 import LayoutHeader from './Header';
 import searchBase from '../static/data/ko/search_base.json';
 import virtualskyInitializer from '../static/data/initializer.json';
@@ -135,13 +135,17 @@ export default class VirtualSky extends Component {
     return (
         <div>
           <LayoutHeader>
+          <Menu.Item style={{minWidth: '400px'}}>
             <Dropdown
-                placeholder='Search Star by name.'
-                fluid selection search
-                options={this.state.formattedSearchBase}
-                onChange={(e, { value }) => this.moveTo(value)}
+              placeholder='Search Star by name.'
+              fluid selection search
+              options={this.state.formattedSearchBase}
+              onChange={(e, { value }) => this.moveTo(value)}
             />
+          </Menu.Item>
+          <Menu.Item>
             <RankingList rankers={this.props.rankers} />
+          </Menu.Item>
           </LayoutHeader>
           <div id={"starmap"} style={styles.container}></div>
           <Astro

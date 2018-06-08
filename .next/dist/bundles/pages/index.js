@@ -488,26 +488,21 @@ var _jsxFileName = "/Users/hangyul/Desktop/Metastellar/metastellar/components/He
       fileName: _jsxFileName,
       lineNumber: 9
     }
-  }, "MetaStellar")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Item, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    }
-  }, props.children), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Menu, {
+  }, "MetaStellar")), props.children, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Menu, {
     position: "right",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 14
+      lineNumber: 12
     }
   }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 13
     }
   }, "Constellation"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_semantic_ui_react__["Menu"].Item, {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 16
     }
   }, "+"))));
 });
@@ -703,13 +698,19 @@ var _jsxFileName = "/Users/hangyul/Desktop/Metastellar/metastellar/components/Ra
 
 var RankingList = function RankingList(props) {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ol", {
-    stackable: true,
+    style: {
+      display: 'flex'
+    },
     __source: {
       fileName: _jsxFileName,
       lineNumber: 6
     }
-  }, props.rankers.slice(0, 3).map(function (ranker) {
+  }, props.rankers.slice(0, 3).map(function (ranker, index) {
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
+      key: index,
+      style: {
+        marginRight: '30px'
+      },
       __source: {
         fileName: _jsxFileName,
         lineNumber: 9
@@ -721,7 +722,7 @@ var RankingList = function RankingList(props) {
         fileName: _jsxFileName,
         lineNumber: 9
       }
-    }, ranker));
+    }, "".concat(ranker.substring(0, 8), "...")));
   }));
 };
 
@@ -1109,6 +1110,14 @@ function (_Component) {
           fileName: _jsxFileName,
           lineNumber: 137
         }
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_semantic_ui_react__["Menu"].Item, {
+        style: {
+          minWidth: '400px'
+        },
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 138
+        }
       }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_semantic_ui_react__["Dropdown"], {
         placeholder: "Search Star by name.",
         fluid: true,
@@ -1121,20 +1130,25 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 138
+          lineNumber: 139
         }
-      }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__index_js__["f" /* RankingList */], {
+      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6_semantic_ui_react__["Menu"].Item, {
+        __source: {
+          fileName: _jsxFileName,
+          lineNumber: 146
+        }
+      }, __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__index_js__["f" /* RankingList */], {
         rankers: this.props.rankers,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 144
+          lineNumber: 147
         }
-      })), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
+      }))), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement("div", {
         id: "starmap",
         style: styles.container,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 146
+          lineNumber: 150
         }
       }), __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__index_js__["a" /* Astro */], {
         astro: this.state.currentAstro,
@@ -1156,7 +1170,7 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 147
+          lineNumber: 151
         }
       }));
     }

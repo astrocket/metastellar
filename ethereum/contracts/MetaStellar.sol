@@ -41,7 +41,7 @@ contract MetaStellar {
         MetaID memory metaID = MetaID({owner : msg.sender, name : 'Metadium', sns: 'metadium.com'});
         uint newAstroId = ++lastId;
         Astro memory astro = Astro({
-            id : newAstroId, // increment!
+            id : newAstroId,
             name : _name,
             raDecimal : _raDecimal,
             decDecimal : _decDecimal,
