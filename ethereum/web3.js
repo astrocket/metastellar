@@ -10,6 +10,7 @@ if (typeof window !== 'undefined' && typeof window.web3 !== 'undefined') {
   const provider = new Web3.providers.HttpProvider(
     `https://ropsten.infura.io/${credentials.infura_key}`
   );
+  console.log(provider);
   web3 = new Web3(provider);
 }
 

@@ -135,17 +135,17 @@ export default class VirtualSky extends Component {
     return (
         <div>
           <LayoutHeader>
-          <Menu.Item style={{minWidth: '400px'}}>
-            <Dropdown
-              placeholder='Search Star by name.'
-              fluid selection search
-              options={this.state.formattedSearchBase}
-              onChange={(e, { value }) => this.moveTo(value)}
-            />
-          </Menu.Item>
-          <Menu.Item>
-            <RankingList rankers={this.props.rankers} />
-          </Menu.Item>
+            <Menu.Item style={{minWidth: '400px'}}>
+              <Dropdown
+                placeholder='Search Star by name.'
+                fluid selection search
+                options={this.state.formattedSearchBase}
+                onChange={(e, { value }) => this.moveTo(value)}
+              />
+            </Menu.Item>
+            <Menu.Item>
+              <RankingList rankers={this.props.rankers} ranking_hashes={this.props.ranking_hashes} />
+            </Menu.Item>
           </LayoutHeader>
           <div id={"starmap"} style={styles.container}></div>
           <Astro

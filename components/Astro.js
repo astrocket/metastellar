@@ -57,7 +57,7 @@ const Astro = ({astro, modalOpen, handleClose, upBid, downBid, onPressBuy, formL
                     >
                       <input />
                       <Button color='green' onClick={() => onPressBuy(this.input.inputRef.value, this.name.inputRef.value, this.sns.inputRef.value)} inverted>
-                        {`ETH`}
+                        {`Buy`}
                       </Button>
                     </Input>
                   </Card.Content>

@@ -13,9 +13,6 @@ export default (props) => {
           <Menu.Item>
             Constellation
           </Menu.Item>
-          <Menu.Item>
-            +
-          </Menu.Item>
         </Menu.Menu>
       </Menu>
       </Sticky>

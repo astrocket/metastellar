@@ -45,7 +45,8 @@ class MetaStellarIndex extends Component {
     const rankers = Object.keys(ranking_hashes).sort(function(a,b){return ranking_hashes[b]-ranking_hashes[a]})
     return {
       astros: astros,
-      rankers: rankers
+      rankers: rankers,
+      ranking_hashes: ranking_hashes
     };
   }
 
@@ -83,7 +84,7 @@ class MetaStellarIndex extends Component {
   render() {
     return(
         <Layout fluid>
-          <VirtualSky astros={this.props.astros} rankers={this.props.rankers} />
+          <VirtualSky astros={this.props.astros} rankers={this.props.rankers} ranking_hashes={this.props.ranking_hashes} />
           <Alert stack={{limit: 3}} />
         </Layout>
     )
