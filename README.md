@@ -18,12 +18,12 @@ There are number of features that could be an appealing point.
 
 #### Getting Started
 
-0. Instal package dependencies
-```bash
+1. Install package dependencies
+    ```bash
 $ npm install
 ```
-1. Regenerate star base for deploy.
-```ruby
+2. Regenerate star base for deploy.
+    ```ruby
 $ cd metastellar
 $ ruby generate_star_seeds.rb
 "Constellation Generated."
@@ -31,22 +31,22 @@ $ ruby generate_star_seeds.rb
 $ ruby generate_star_seeds.rb -test
 "Test Constellation Generated."
 ```
-2. Generate search base for constellation search.
-```bash
+3. Generate search base for constellation search.
+    ```bash
 $ cd metastellar
 $ ruby generate_search_seeds.rb
 ```
-3. Compile smart contract. (in case you updated MetaStellar.sol)
-```bash
+4. Compile smart contract. (in case you updated MetaStellar.sol)
+    ```bash
 cd ethereum
 node compile.js
 # generates ethereum/build/MetaStellar.json
 ```
-4. Figuring ethereum enviroment
-> static/data/credentials.json
+5. Figuring ethereum enviroment
+    > static/data/credentials.json
 You can set your basic credentials here.
-5. Deploying smart contract & star bases.
-```bash
+6. Deploying smart contract & star bases.
+    ```bash
 $ cd ethereum
 # deploy contract & stars to mainnet through infura
 $ node deploy.js network=mainnet contract
@@ -57,17 +57,17 @@ $ node deploy.js network=metadium
 # deploy stars only to ropsten through infura
 $ node deploy.js
 ```
-6. Test Solidity Smart Contract
-```bash
+7. Test Solidity Smart Contract
+    ```bash
 npm run test
 ```
-7. Run application in local environment
-```bash
+8. Run application in local environment
+    ```bash
 $ npm run dev
 // check from: localhost: 3000
 ```
-8. Deploy
-pull down the latest repository from bitbucket.
+9. Deploy
+    pull down the latest repository from bitbucket.
 > SSH info
 ```bash
 Host metadium
