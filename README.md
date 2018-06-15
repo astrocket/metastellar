@@ -2,28 +2,16 @@
 
 Constellation market on Ethereum & Metadium Blockchain for Metadium demo App purpose.
 
-#### What is this project about ?
-
-There are number of stars with familiar names on constellation. It would be really awesome if we could draw them on blockchain and let people own it.
-
-There are number of features that could be an appealing point.
-
-1. Comparison of Ethereum & Metadium blockchain.
-   - Giving user a choice for selecting different chain base.
-2. Identity Integration
-   - Whoever purchases the star will want to show their identity that it's their's. Just showing off random addresses are quite meaningless. Using Identity platforms like Metadium, Metastellar can access to user's information like name, url, and etc. They will shine upon constellation.
-3. Trading stars.
-    - Nothing serious. Simple functions to purchase other's star.
-
-
 #### Getting Started
 
-1. Install package dependencies
-    ```bash
+##### Install package dependencies
+
+```bash
 $ npm install
 ```
-2. Regenerate star base for deploy.
-    ```ruby
+##### Regenerate star base for deploy.
+
+```ruby
 $ cd metastellar
 $ ruby generate_star_seeds.rb
 "Constellation Generated."
@@ -31,22 +19,22 @@ $ ruby generate_star_seeds.rb
 $ ruby generate_star_seeds.rb -test
 "Test Constellation Generated."
 ```
-3. Generate search base for constellation search.
-    ```bash
+##### Generate search base for constellation search.
+```bash
 $ cd metastellar
 $ ruby generate_search_seeds.rb
 ```
-4. Compile smart contract. (in case you updated MetaStellar.sol)
-    ```bash
+##### Compile smart contract. (in case you updated MetaStellar.sol)
+```bash
 cd ethereum
 node compile.js
 # generates ethereum/build/MetaStellar.json
 ```
-5. Figuring ethereum enviroment
-    > static/data/credentials.json
+##### Figuring ethereum enviroment
+> static/data/credentials.json
 You can set your basic credentials here.
-6. Deploying smart contract & star bases.
-    ```bash
+##### Deploying smart contract & star bases.
+```bash
 $ cd ethereum
 # deploy contract & stars to mainnet through infura
 $ node deploy.js network=mainnet contract
@@ -57,17 +45,17 @@ $ node deploy.js network=metadium
 # deploy stars only to ropsten through infura
 $ node deploy.js
 ```
-7. Test Solidity Smart Contract
-    ```bash
+##### Test Solidity Smart Contract
+```bash
 npm run test
 ```
-8. Run application in local environment
-    ```bash
+##### Run application in local environment
+```bash
 $ npm run dev
 // check from: localhost: 3000
 ```
-9. Deploy
-    pull down the latest repository from bitbucket.
+##### Deploy
+pull down the latest repository from bitbucket.
 > SSH info
 ```bash
 Host metadium
@@ -94,16 +82,6 @@ pm2 start npm -- start
 5. Solidity for Ethereum smart contract.
 6. Mocha for testing.
 7. React Alert module from ['react-s-alert'](https://github.com/juliancwirko/react-s-alert)
-
-
-#### Smart Contract Requirements
-
-1. Initial setup.
-   1. Initial registration of stars.
-   2. Contract owner registration.
-2. Tracking and purchasing functions for purchased user.
-3. Integration of MetID through Metadium SDK.
-4. Being able to track user from star and vice versa.
 
 #### Star related.
 [Reference](http://curious.astro.cornell.edu/about-us/112-observational-astronomy/stargazing/technical-questions/699-what-are-ra-and-dec-intermediate)
