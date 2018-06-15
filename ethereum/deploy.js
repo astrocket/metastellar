@@ -49,7 +49,7 @@ const deploy = async () => {
       .deploy({data: compiledMetaStellar.bytecode, arguments: initialParams})
       .send(deployerInfo);
 
-  console.log(`Contract deployed to ${network} network : `, deployedMetaStellar.options.address);
+  console.log(`Contract deployed to ${network} network : `, deployedMetaStellar.options.address, 'Update contract address from crendential.json');
 };
 
 const bigbang = async () => {

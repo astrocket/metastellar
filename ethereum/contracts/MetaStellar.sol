@@ -19,8 +19,9 @@ contract MetaStellar {
     }
 
     address public cosmos;
-    mapping(address => mapping(uint => uint)) public astroBucketIndex; // list of starIndexes for given address
-    mapping(address => uint[]) public astroBucket; // ids of stars for given address
+    // list of starIndexes for given address 22 => 0, 25 => 1, 11=> 2, 552=> 3, 251=> 4 : prevent looping entire bucket while deleting from previous owner.
+    mapping(address => mapping(uint => uint)) public astroBucketIndex;
+    mapping(address => uint[]) public astroBucket; // ids of stars for given address 0~4
     mapping(uint => Astro) public constellation; // find Astro by id(foreign key).
     uint public minimumPrice;
     uint public lastId;
