@@ -20,7 +20,11 @@ const setEnv = async () => {
     if (val.split('=')[0] === 'network') {
       network = val.split('=')[1];
       if (val.split('=')[1] === 'metadium') {
-        http_api = credentials.metadium_api;
+        if (credentials.metadium_api === 'undefined') {
+          console.log('Error : add metadium informations into credentials.json')
+        } else {
+          http_api = credentials.metadium_api;
+        }
       }
     }
     if (val === 'contract') {
