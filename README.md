@@ -54,15 +54,6 @@ npm run test
 $ npm run dev
 // check from: localhost: 3000
 ```
-##### Deploy
-pull down the latest repository from bitbucket.
-> SSH info
-```bash
-Host metadium
-HostName 13.125.251.87
-User ubuntu
-IdentityFile ~/.ssh/cp_blockchain.pem
-```
 > Deploy procedure
 ```bash
 cd metastellar
